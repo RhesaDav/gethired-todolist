@@ -14,6 +14,7 @@ export default function ModalDelete({
     <>
       {openModal ? (
         <div
+        data-cy='activity-item-delete-button'
           onClick={closeModal}
           className="flex justify-center bg-gray-500 bg-opacity-75 items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
         >
@@ -34,12 +35,14 @@ export default function ModalDelete({
                 <button
                   onClick={closeModal}
                   className="bg-gray-500 rounded-full px-5 py-2"
+                  data-cy='modal-delete-cancel-button'
                 >
                   Batal
                 </button>
                 <button
                   onClick={handleDelete}
                   className="bg-red-500 rounded-full px-5 py-2"
+                  data-cy='activity-item-delete-button'
                 >
                   Hapus
                 </button>

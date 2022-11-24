@@ -103,14 +103,14 @@ export default function Home() {
                   className="bg-white p-4 h-48 flex flex-col justify-between cursor-pointer rounded-xl shadow-2xl"
                   onClick={() => navigate(`/detail/${item.id}`)}
                 >
-                  <h1 className="font-semibold cursor-pointer text-xl">
+                  <h1 data-cy='activity-item-title' className="font-semibold cursor-pointer text-xl">
                     {item.title}
                   </h1>
                   <div
                     onClick={(e) => e.stopPropagation()}
                     className="flex justify-between items-center text-gray-500"
                   >
-                    <h1 className="tracking-wide">
+                    <h1 data-cy='activity-item-date' className="tracking-wide">
                       {moment(item.created_at).format("DD MMM YYYY")}
                     </h1>
                     <button
@@ -118,6 +118,7 @@ export default function Home() {
                       onClick={() => setShowModal(!showModal)}
                     >
                       <BsTrash
+                      data-cy='activity-item-delete-button'
                         onClick={() => {
                           setShowModal(true);
                           setDetail(item);
@@ -145,7 +146,7 @@ export default function Home() {
         isActivity={true}
         data={detail}
       />
-      <Alert openAlert={showAlert} closeAlert={() => setShowAlert(false)} />
+      <Alert data-cy='modal-information' openAlert={showAlert} closeAlert={() => setShowAlert(false)} />
     </DrawerLayout>
   );
 }
