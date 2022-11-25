@@ -59,10 +59,13 @@ export default function Home() {
 
   return (
     <DrawerLayout>
-      <header data-cy='activity-title' className="flex items-center justify-between">
+      <header
+        data-cy="activity-title"
+        className="flex items-center justify-between"
+      >
         <h1 className="font-bold text-4xl">Activity</h1>
         <button
-          data-cy='activity-add-button'
+          data-cy="activity-add-button"
           onClick={handleNewActivity}
           className="flex items-center gap-2 bg-blue-400 py-3 px-4 rounded-full text-white font-bold text-xl"
         >
@@ -96,29 +99,35 @@ export default function Home() {
       ) : (
         <>
           {data.length >= 1 ? (
-            <div data-cy='activity-item' className="grid pt-10 grid-cols-4 gap-5">
+            <div
+              data-cy="activity-item"
+              className="grid pt-10 grid-cols-4 gap-5"
+            >
               {data.map((item, index) => (
                 <div
                   key={index}
                   className="bg-white p-4 h-48 flex flex-col justify-between cursor-pointer rounded-xl shadow-2xl"
                   onClick={() => navigate(`/detail/${item.id}`)}
                 >
-                  <h1 data-cy='activity-item-title' className="font-semibold cursor-pointer text-xl">
+                  <h1
+                    data-cy="activity-item-title"
+                    className="font-semibold cursor-pointer text-xl"
+                  >
                     {item.title}
                   </h1>
                   <div
                     onClick={(e) => e.stopPropagation()}
                     className="flex justify-between items-center text-gray-500"
                   >
-                    <h1 data-cy='activity-item-date' className="tracking-wide">
+                    <h1 data-cy="activity-item-date" className="tracking-wide">
                       {moment(item.created_at).format("DD MMM YYYY")}
                     </h1>
                     <button
-                      data-cy='modal-delete'
                       className="text-2xl"
                       onClick={() => setShowModal(!showModal)}
                     >
                       <BsTrash
+                        data-cy="activity-item-delete-button"
                         onClick={() => {
                           setShowModal(true);
                           setDetail(item);
