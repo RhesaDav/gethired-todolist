@@ -114,11 +114,11 @@ export default function Home() {
                       {moment(item.created_at).format("DD MMM YYYY")}
                     </h1>
                     <button
+                      data-cy='modal-delete activity-item-delete-button'
                       className="text-2xl"
                       onClick={() => setShowModal(!showModal)}
                     >
                       <BsTrash
-                      data-cy='activity-item-delete-button'
                         onClick={() => {
                           setShowModal(true);
                           setDetail(item);
@@ -146,7 +146,7 @@ export default function Home() {
         isActivity={true}
         data={detail}
       />
-      <Alert data-cy='modal-information' openAlert={showAlert} closeAlert={() => setShowAlert(false)} />
+      <Alert openAlert={showAlert} closeAlert={() => setShowAlert(false)} />
     </DrawerLayout>
   );
 }

@@ -7,6 +7,7 @@ export default function Alert({ openAlert,closeAlert }) {
       {openAlert ? (
         <div onClick={closeAlert} className="flex justify-center bg-gray-500 bg-opacity-75 items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
           <div
+          data-cy='modal-information'
             onClick={(e) => e.stopPropagation()}
             className="relative w-auto my-6 mx-auto max-w-3xl"
           >

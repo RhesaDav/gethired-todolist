@@ -139,7 +139,7 @@ export default function Detail() {
     <DrawerLayout>
       <div>
         <header className="flex items-center justify-between">
-          <div className="flex items-center justify-start gap-5">
+          <div className="flex items-center justify-start gap-5" data-cy='todo-title'>
             <BiChevronLeft
               onClick={() => navigate("/")}
               className="text-4xl cursor-pointer"
@@ -213,6 +213,7 @@ export default function Detail() {
               ""
             )}
             <button
+            data-cy='todo-add-button'
               onClick={handleNewTodo}
               className="flex items-center gap-2 bg-blue-400 py-3 px-4 rounded-full text-white font-bold text-xl"
             >
