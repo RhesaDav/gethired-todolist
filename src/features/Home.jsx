@@ -124,15 +124,14 @@ export default function Home() {
                     </h1>
                     <button
                       className="text-2xl"
-                      onClick={() => setShowModal(!showModal)}
+                      // onClick={() => setShowModal(!showModal)}
+                      data-cy="modal-delete"
+                      onClick={() => {
+                        setShowModal(true);
+                        setDetail(item);
+                      }}
                     >
-                      <BsTrash
-                        data-cy="activity-item-delete-button"
-                        onClick={() => {
-                          setShowModal(true);
-                          setDetail(item);
-                        }}
-                      />
+                      <BsTrash />
                     </button>
                   </div>
                 </div>

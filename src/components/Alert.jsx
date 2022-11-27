@@ -15,7 +15,7 @@ export default function Alert({ openAlert,closeAlert }) {
               <div className="text-[#00A790] text-2xl">
                 <AiOutlineInfoCircle />
               </div>
-              <h1>Activity berhasil dihapus</h1>
+              <h1 data-cy='modal-information'>Activity berhasil dihapus</h1>
             </div>
           </div>
         </div>
