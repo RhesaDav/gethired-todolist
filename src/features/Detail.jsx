@@ -172,13 +172,13 @@ export default function Detail() {
             {filterOptions ? (
               <div className="absolute right-36 top-48 z-10 w-56 mt-4 origin-top-right bg-white border border-gray-100 rounded-md shadow-lg">
                 <div className="p-2">
-                  <div
+                  <button
                     onClick={sortByNewest}
                     className="flex cursor-pointer px-4 py-2 text-md items-center gap-2 text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
                   >
                     <HiOutlineSortAscending />
                     <h1>Terbaru</h1>
-                  </div>
+                  </button>
                   <button
                     onClick={sortByOldest}
                     className="flex cursor-pointer px-4 py-2 text-md items-center gap-2 text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700"
