@@ -18,12 +18,12 @@ export default function Detail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [data, setData] = useState({});
-  const [dataTodos, setDataTodos] = useState([])
-  const [detailTodo, setDetailTodo] = useState({})
+  const [dataTodos, setDataTodos] = useState([]);
+  const [detailTodo, setDetailTodo] = useState({});
   const [detail, setDetail] = useState({});
   const [editTitle, setEditTitle] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [showModalEdit, setShowModalEdit] = useState(false)
+  const [showModalEdit, setShowModalEdit] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
   const [loading, setLoading] = useState(true);
   const [filterOptions, setFilterOptions] = useState(false);
@@ -33,7 +33,7 @@ export default function Detail() {
     await httpServices.detailActivity(id).then((res) => {
       // console.log(res);
       setData(res.data);
-      setDataTodos(res.data.todo_items)
+      setDataTodos(res.data.todo_items);
       setLoading(false);
     });
   };
@@ -51,18 +51,21 @@ export default function Detail() {
   };
 
   const handleCheckboxTodo = (e, id) => {
-    console.log(e.target.checked, id)
-      httpServices.updateTodo(id,{
-        is_active: e.target.checked
-      }).then((res) => {
-        loadDataDetail()
+    console.log(e.target.checked, id);
+    httpServices
+      .updateTodo(id, {
+        is_active: 0? 0:1,
       })
-  }
+      .then((res) => {
+        console.log(res.data)
+        loadDataDetail();
+      });
+  };
 
   const handleUpdateTodo = (item) => {
-    setShowModalEdit(true)
-    setDetailTodo(item)
-  }
+    setShowModalEdit(true);
+    setDetailTodo(item);
+  };
 
   const changeTitle = (e) => {
     if (e.key === "Enter") {
@@ -91,55 +94,52 @@ export default function Detail() {
   };
 
   const sortByAscending = () => {
-    const clone = [...dataTodos]
-    
-    const dataSorted = clone.sort((a,b) => 
-      a.title > b.title ? 1 : -1
-    )
-    setDataTodos(dataSorted)
-  }
+    const clone = [...dataTodos];
+
+    const dataSorted = clone.sort((a, b) => (a.title > b.title ? 1 : -1));
+    setDataTodos(dataSorted);
+    setFilterOptions(!filterOptions)
+  };
 
   const sortByDescending = () => {
-    const clone = [...dataTodos]
-    
-    const dataSorted = clone.sort((a,b) => 
-      a.title < b.title ? 1 : -1
-    )
-    setDataTodos(dataSorted)
-  } 
-  
+    const clone = [...dataTodos];
+
+    const dataSorted = clone.sort((a, b) => (a.title < b.title ? 1 : -1));
+    setDataTodos(dataSorted);
+  };
+
   const sortByNewest = () => {
-    const clone = [...dataTodos]
-    
-    const dataSorted = clone.sort((a,b) => 
-      a.id < b.id ? 1 : -1
-    )
-    setDataTodos(dataSorted)
-  } 
+    const clone = [...dataTodos];
+
+    const dataSorted = clone.sort((a, b) => (a.id < b.id ? 1 : -1));
+    setDataTodos(dataSorted);
+  };
 
   const sortByOldest = () => {
-    const clone = [...dataTodos]
-    
-    const dataSorted = clone.sort((a,b) => 
-      a.id > b.id ? 1 : -1
-    )
-    setDataTodos(dataSorted)
-  } 
+    const clone = [...dataTodos];
+
+    const dataSorted = clone.sort((a, b) => (a.id > b.id ? 1 : -1));
+    setDataTodos(dataSorted);
+  };
 
   const sortByActive = () => {
-    const clone = [...dataTodos]
-    
-    const dataSorted = clone.sort((a,b) => 
+    const clone = [...dataTodos];
+
+    const dataSorted = clone.sort((a, b) =>
       a.is_active > b.is_active ? 1 : -1
-    )
-    setDataTodos(dataSorted)
-  } 
+    );
+    setDataTodos(dataSorted);
+  };
+  console.log(dataTodos)
 
   return (
     <DrawerLayout>
       <div>
         <header className="flex items-center justify-between">
-          <div className="flex items-center justify-start gap-5" data-cy='todo-title'>
+          <div
+            className="flex items-center justify-start gap-5"
+            data-cy="todo-title"
+          >
             <BiChevronLeft
               onClick={() => navigate("/")}
               className="text-4xl cursor-pointer"
@@ -213,7 +213,7 @@ export default function Detail() {
               ""
             )}
             <button
-            data-cy='todo-add-button'
+              data-cy="todo-add-button"
               onClick={handleNewTodo}
               className="flex items-center gap-2 bg-blue-400 py-3 px-4 rounded-full text-white font-bold text-xl"
             >
@@ -251,10 +251,33 @@ export default function Detail() {
             {dataTodos.length >= 1 ? (
               <div className="pt-10">
                 {dataTodos.map((item, index) => (
-                  <div key={index} className="flex items-center justify-between bg-white px-5 py-4 my-5 rounded-xl shadow-2xl">
+                  <div
+                    key={index}
+                    className="flex items-center justify-between bg-white px-5 py-4 my-5 rounded-xl shadow-2xl"
+                  >
                     <div className="flex gap-3 items-center">
-                      <input type="checkbox" name="" id="" defaultChecked={item.is_active === 0} onChange={(e) => handleCheckboxTodo(e,item.id)} />
-                      <GoPrimitiveDot />
+                      <input
+                        type="checkbox"
+                        name=""
+                        id=""
+                        defaultChecked={item.is_active === 0}
+                        onClick={(e) => handleCheckboxTodo(e, item.id)}
+                      />
+                      <GoPrimitiveDot
+                        className={
+                          item.priority === "very-high"
+                            ? "text-[#ED4C5C]"
+                            : item.priority === "high"
+                            ? "text-[#F8A541]"
+                            : item.priority === "normal"
+                            ? "text-[#00A790]"
+                            : item.priority === "low"
+                            ? "text-[#428BC1]"
+                            : item.priority === "very-low"
+                            ? "text-[#8942C1]"
+                            : ""
+                        }
+                      />
                       <h1 className="text-2xl">{item.title}</h1>
                       <button className="text-sm">
                         <BsPencil onClick={() => handleUpdateTodo(item)} />
@@ -286,10 +309,15 @@ export default function Detail() {
           loadDataDetail();
         }}
       />
-      <ModalAddTodo openModal={showModalEdit} isEdit={true} data={detailTodo} closeModal={() => {
-        setShowModalEdit(false)
-        loadDataDetail()
-      }} />
+      <ModalAddTodo
+        openModal={showModalEdit}
+        isEdit={true}
+        data={detailTodo}
+        closeModal={() => {
+          setShowModalEdit(false);
+          loadDataDetail();
+        }}
+      />
       <ModalDelete
         openModal={showModalDelete}
         data={detail}

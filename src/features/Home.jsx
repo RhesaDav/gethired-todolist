@@ -100,12 +100,12 @@ export default function Home() {
         <>
           {data.length >= 1 ? (
             <div
-              data-cy="activity-item"
               className="grid pt-10 grid-cols-4 gap-5"
             >
               {data.map((item, index) => (
                 <div
                   key={index}
+                  data-cy="activity-item"
                   className="bg-white p-4 h-48 flex flex-col justify-between cursor-pointer rounded-xl shadow-2xl"
                   onClick={() => navigate(`/detail/${item.id}`)}
                 >
@@ -125,7 +125,7 @@ export default function Home() {
                     <button
                       className="text-2xl"
                       // onClick={() => setShowModal(!showModal)}
-                      data-cy="modal-delete"
+                      data-cy="activity-item-delete-button"
                       onClick={() => {
                         setShowModal(true);
                         setDetail(item);
