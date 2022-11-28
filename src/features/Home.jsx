@@ -125,7 +125,6 @@ export default function Home() {
                     <button
                       className="text-2xl"
                       // onClick={() => setShowModal(!showModal)}
-                      data-cy="activity-item-delete-button"
                       onClick={() => {
                         setShowModal(true);
                         setDetail(item);

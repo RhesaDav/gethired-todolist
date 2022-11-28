@@ -22,7 +22,7 @@ export default function ModalDelete({
             onClick={(e) => e.stopPropagation()}
             className="relative w-auto my-6 mx-auto max-w-3xl"
           >
-            <div className="border-0 p-4 gap-5 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+            <div data-cy="modal-delete" className="border-0 p-4 gap-5 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
               <div className="flex justify-center p-10">
               <img src={logoWarning} className='w-10 h-10' alt="" />
               </div>
